@@ -1,0 +1,25 @@
+<layout>
+
+    <data>
+        <import type="kyalo.innocent.githubapitest.models.github_users.AllUsersModel"/>
+        <import type="java.util.List"/>
+
+        <variable
+            name="allUsersSourceList"
+            type="List&lt;AllUsersModel>" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/all_users_recyler"
+            allUsersAdapter="@{allUsersSourceList}"
+            android:background="@color/grey_background"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">GitHub API Test</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="organization_repos_text">Organization Repos</string>
+    <string name="organization_repos">Organization Repos</string>
+    <string name="day_mode_string">Day Mode</string>
+    <string name="night_mode_string">Night Mode</string>
+    <string name="avatar_string">GitHub user avatar</string>
+    <string name="all_users_text">GitHub Users</string>
+    <string name="users_label">GitHub Users</string>
+    <string name="followers_placeholder_text">200 Followers</string>
+    <string name="following_placeholder_text">80 Following</string>
+    <string name="repos_text">200 Repositories</string>
+    <string name="search_hint">Search Users</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="github_username_placeholder">Innocent Kyalo</string>
+    <string name="followers_number">Followers</string>
+</resources>
