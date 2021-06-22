@@ -24,4 +24,6 @@ interface GitHubUserDao {
 
     @Query("SELECT * FROM githubusermodel")
     fun getAllUsers(): LiveData<List<GitHubUserModel>>
+
+
 }

@@ -1,23 +1,19 @@
 package kyalo.innocent.githubapitest.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import es.dmoral.toasty.Toasty
 import kyalo.innocent.githubapitest.BR
 import kyalo.innocent.githubapitest.R
 import kyalo.innocent.githubapitest.databinding.AllUsersSingleItemBinding
 import kyalo.innocent.githubapitest.models.github_users.AllUsersModel
 import kyalo.innocent.githubapitest.ui.home.HomeFragmentDirections
 
-class AllUsersAdapter(private val allUsersList: List<AllUsersModel>?, private var context: Context) :
+class AllUsersAdapter(private val allUsersList: List<AllUsersModel>?) :
         RecyclerView.Adapter<AllUsersAdapter.UsersViewHolder>() {
-
-    private var fOnItemClickListener: View.OnClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val rootBinding: AllUsersSingleItemBinding = DataBindingUtil

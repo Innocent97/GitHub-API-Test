@@ -2,4 +2,8 @@
 <resources>
     <string name="github_username_placeholder">Innocent Kyalo</string>
     <string name="followers_number">Followers</string>
+    <string name="followers_placeholder_text_string">Followers</string>
+    <string name="following_placeholder_text_string">Following</string>
+    <string name="search_organization_string">Search Organization</string>
+    <string name="organizations">Organizations Fragment</string>
 </resources>

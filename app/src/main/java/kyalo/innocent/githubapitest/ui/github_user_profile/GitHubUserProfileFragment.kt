@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import es.dmoral.toasty.Toasty
@@ -44,11 +45,23 @@ class GitHubUserProfileFragment: Fragment() {
         userProfileViewModel = ViewModelProvider(this).get(GitHubUserViewModel::class.java)
         username?.let { userProfileViewModel.setUsername(it) }
 
+        userProfileViewModel.username.value?.let { userProfileViewModel.getUserData(it) }
+
+       /* userProfileViewModel.username.value?.let { userProfileViewModel.searchUserInDB(it) }
+
         Toasty.info(requireContext(), "${userProfileViewModel.username.value}", Toasty.LENGTH_SHORT).show()
 
         // Observe searched user property
-        userProfileViewModel.gitHubUser.observe(viewLifecycleOwner,) { remoteUser ->
-            //userProfileBinding.gitHubUser = remoteUser
+        userProfileViewModel.gitHubUser?.observe(viewLifecycleOwner,) { remoteUser ->
+            userProfileBinding.gitHubUser = remoteUser
+        }*/
+
+        userProfileViewModel.username.value?.let {
+            userProfileViewModel.searchUserInDB(it)?.observe(viewLifecycleOwner, { user ->
+                userProfileBinding.gitHubUser = user
+                if (user != null)
+                    Toasty.info(requireContext(), "${user.login} ${user.email}", Toasty.LENGTH_LONG).show()
+            })
         }
 
         userProfileViewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->

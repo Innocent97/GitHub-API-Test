@@ -16,11 +16,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="kyalo.innocent.githubapitest.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-    <fragment
         android:id="@+id/nav_github_user_profile"
         android:name="kyalo.innocent.githubapitest.ui.github_user_profile.GitHubUserProfileFragment"
         android:label="GitHubUserProfileFragment"
@@ -31,5 +26,9 @@
             app:nullable="true"
             android:defaultValue="Innocent97" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_organizations_fragment"
+        android:name="kyalo.innocent.githubapitest.ui.repositories.OrganizationsFragment"
+        android:label="Organizations Fragment" />
 
 </navigation>

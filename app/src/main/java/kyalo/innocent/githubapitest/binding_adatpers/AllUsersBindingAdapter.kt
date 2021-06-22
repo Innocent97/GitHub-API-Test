@@ -26,7 +26,7 @@ fun setAllUsersAdapter(recyclerView: RecyclerView?, usersList: List<AllUsersMode
     // check if adapter is null
     var reposAdapter: AllUsersAdapter? = recyclerView?.adapter as AllUsersAdapter?
     if (reposAdapter == null) {
-        reposAdapter = recyclerView?.context?.let { AllUsersAdapter(usersList, recyclerView.context) }
+        reposAdapter = recyclerView?.context?.let { AllUsersAdapter(usersList) }
         recyclerView?.adapter = reposAdapter
     }
 

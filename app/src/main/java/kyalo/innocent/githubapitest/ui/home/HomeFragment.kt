@@ -68,7 +68,7 @@ class HomeFragment(): Fragment() {
 
                         val newList = mutableListOf<AllUsersModel>()
                         result?.let { newList.add(it) }
-                        val myAdapter = activity?.let { AllUsersAdapter(newList, it.applicationContext) }
+                        val myAdapter = activity?.let { AllUsersAdapter(newList) }
                         usersBinding.allUsersRecyler.adapter = myAdapter
                     }
                     else
@@ -92,7 +92,7 @@ class HomeFragment(): Fragment() {
 
         fUsersViewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner, { usersQuery ->
 
-            val myAdapter = activity?.applicationContext?.let { AllUsersAdapter(usersQuery, it) }
+            val myAdapter = activity?.applicationContext?.let { AllUsersAdapter(usersQuery) }
             usersBinding.allUsersRecyler.adapter = myAdapter
         })
     }

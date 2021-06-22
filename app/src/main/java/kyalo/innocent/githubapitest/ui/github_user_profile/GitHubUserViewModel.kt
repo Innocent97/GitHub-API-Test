@@ -52,14 +52,11 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
         get() = _username
 
     private var _gitHubUser = MutableLiveData<GitHubUserModel>()
-    val gitHubUser: LiveData<GitHubUserModel>
-        get() = _gitHubUser
+    lateinit var gitHubUser: LiveData<GitHubUserModel>
 
     // Get DB and Repository
     private val database = getGitHubUsersDatabase(application)
     private val gitHubUserRepository = GitHubUserRepository(database)
-
-    var users = gitHubUserRepository.listOfUsers
 
     // Set value to the username
     fun setUsername(name: String) {
@@ -68,12 +65,12 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
 
     init {
         _username.value?.let { fetchGitHubUserInformation(it) }
-        _username.value?.let { searchData(it) }
     }
 
-    // Initialilize remote search
-    fun searchData(name: String) {
-        _gitHubUser.value = name.let { searchGitHubUsersRemotely(it) }
+    fun getUserData(string: String) {
+        viewModelScope.launch {
+            gitHubUserRepository.getSingleGitHubUser(string)
+        }
     }
 
     // Search User Remotely
@@ -86,12 +83,14 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
     }
 
     // Search User in Database
-    fun searchUserInDB(searchQuery: String): LiveData<GitHubUserModel>?{
+    fun searchUserInDB(searchQuery: String): LiveData<GitHubUserModel>? {
         var searchResult: LiveData<GitHubUserModel>? = null
         viewModelScope.launch {
             searchResult = gitHubUserRepository.getSingleGitHubUserDB(searchQuery)
         }
+        searchResult?.let { gitHubUser = it }
         return searchResult
+
     }
 
     // Fetch user details remotely

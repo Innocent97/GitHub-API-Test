@@ -34,12 +34,9 @@ data class GitHubUserModel constructor(
 
     val id: Int?,
     val location: String?,
-
-
     @NonNull
     @PrimaryKey
     val login: String = "",
-
     val name: String?,
     @SerializedName("node_id")
     val nodeId: String?,

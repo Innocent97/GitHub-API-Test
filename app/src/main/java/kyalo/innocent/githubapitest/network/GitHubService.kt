@@ -1,5 +1,7 @@
 package kyalo.innocent.githubapitest.network
 
+import kyalo.innocent.githubapitest.models.OrgModel
+import kyalo.innocent.githubapitest.models.OrganizationModel
 import kyalo.innocent.githubapitest.models.github_users.AllUsersModel
 import kyalo.innocent.githubapitest.models.github_users.GitHubUserModel
 import kyalo.innocent.githubapitest.models.repos_models.RepositoryItem
@@ -10,8 +12,12 @@ import retrofit2.http.Path
 interface GitHubService {
 
     // Get a repository
-    @GET("/orgs/Microsoft/repos")
-    fun getRepositories(): Call<List<RepositoryItem>>
+    @GET("/orgs/{organization}")
+    fun getOrganization(@Path("organization") organization: String): Call<OrgModel>
+
+    // Search user remotely
+    @GET("/users/{username}")
+    fun getUserRemotely(@Path("username") name: String): Call<AllUsersModel>
 
     // Get all users
     @GET("/users")
@@ -20,10 +26,6 @@ interface GitHubService {
     // Get list of followers
     @GET("/{name}/followers")
     fun getFollowers(@Path("name") username: String): Call<List<AllUsersModel>>
-
-    // Search user remotely
-    @GET("/users/{username}")
-    fun getUserRemotely(@Path("username") name: String): Call<AllUsersModel>
 
     @GET("/users/{username}")
     fun getGitHubUserRemotely(@Path("username") name: String): Call<GitHubUserModel>
