@@ -1,0 +1,29 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="kyalo.innocent.githubapitest.models.OrgModel"/>
+        <import type="java.util.List"/>
+
+        <variable
+            name="recyclerDataSource"
+            type="List&lt;OrgModel>"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.repositories.OrganizationsFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/organizations_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/organization_repos_layout_item"
+            organizationsAdapter="@{recyclerDataSource}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
