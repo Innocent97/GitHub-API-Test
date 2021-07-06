@@ -30,9 +30,9 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
             app:cardCornerRadius="2dp"
             app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,37 +48,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
-                    android:textColor="@color/black"
+                    android:text="@{gitHubUser.login}"
                     android:textSize="25sp"
+                    android:fontFamily="sans-serif"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="@{gitHubUser.name}"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_github_user_followers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="100dp"
                     android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
+                    android:text="@{gitHubUser.followers.toString().concat(@string/followers)}"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_github_user_about"
-                    android:text="@{gitHubUser.followers.toString()}"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_github_user_about" />
 
                 <TextView
                     android:id="@+id/tv_github_user_following"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="60dp"
-                    android:text="@{gitHubUser.following.toString()}"
-                    android:textColor="@color/black"
+                    android:text="@{gitHubUser.following.toString().concat(@string/following)}"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_github_user_followers"
                     app:layout_constraintTop_toBottomOf="@+id/tv_github_user_about" />
 
                 <TextView
@@ -89,12 +87,12 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:drawablePadding="3dp"
+                    android:text="@{gitHubUser.location}"
                     android:textSize="18sp"
+                    app:drawableLeftCompat="@drawable/location"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_github_user_following"
-                    app:drawableLeftCompat="@drawable/location"
-                    android:text="@{gitHubUser.location}"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_github_user_following" />
 
                 <TextView
                     android:id="@+id/tv_github_user_email"
@@ -105,25 +103,25 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:drawablePadding="3dp"
+                    android:text="@{gitHubUser.email}"
                     android:textSize="18sp"
+                    app:drawableLeftCompat="@drawable/email"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_github_user_location"
-                    app:drawableLeftCompat="@drawable/email"
-                    android:text="@{gitHubUser.email}"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_github_user_location" />
 
                 <TextView
                     android:id="@+id/tv_github_user_about"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginEnd="60dp"
+                    android:text="@{gitHubUser.bio}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_github_username"
-                    android:text="@{gitHubUser.bio}"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_github_username" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

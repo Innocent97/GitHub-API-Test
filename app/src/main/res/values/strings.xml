@@ -22,8 +22,8 @@
     <string name="following_placeholder_text">80 Following</string>
     <string name="repos_text">200 Repositories</string>
     <string name="search_hint">Search Users</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
+    <string name="followers">\u0020followers</string>
+    <string name="following">\u0020following</string>
     <string name="github_username_placeholder">Innocent Kyalo</string>
     <string name="followers_number">Followers</string>
     <!-- TODO: Remove or change this placeholder text -->
