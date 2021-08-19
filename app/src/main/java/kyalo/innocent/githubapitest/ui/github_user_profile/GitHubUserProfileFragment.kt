@@ -46,6 +46,7 @@ class GitHubUserProfileFragment: Fragment() {
         userProfileViewModel.username.value?.let {
             userProfileViewModel.searchUserInDB(it)?.observe(viewLifecycleOwner, { user ->
                 userProfileBinding.gitHubUser = user
+                userProfileViewModel.repoUrl = user.reposUrl.toString()
             })
         }
 

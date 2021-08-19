@@ -5,6 +5,7 @@ import kyalo.innocent.githubapitest.models.OrganizationModel
 import kyalo.innocent.githubapitest.models.github_users.AllUsersModel
 import kyalo.innocent.githubapitest.models.github_users.GitHubUserModel
 import kyalo.innocent.githubapitest.models.repos_models.RepositoryItem
+import kyalo.innocent.githubapitest.models.user_repo_model.UserReposModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -33,5 +34,8 @@ interface GitHubService {
     // Get User infor
     @GET("/users/{username}")
     fun getGitHubUserInformation(@Path("username") name: String): Call<GitHubUserModel>
+
+    @GET("/users/{username}/repos")
+    fun getUserRepositories(@Path("username") name: String): Call<List<UserReposModel>>
 
 }

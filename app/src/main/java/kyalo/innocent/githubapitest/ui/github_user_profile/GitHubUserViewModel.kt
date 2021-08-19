@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import kyalo.innocent.githubapitest.database.github_users.getGitHubUsersDatabase
 import kyalo.innocent.githubapitest.models.github_users.AllUsersModel
 import kyalo.innocent.githubapitest.models.github_users.GitHubUserModel
+import kyalo.innocent.githubapitest.models.user_repo_model.UserReposModel
 import kyalo.innocent.githubapitest.repositories.GitHubUserRepository
 import java.io.IOException
 
@@ -34,6 +35,8 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
+
+
     /**
      * Flag to display the error message. This is private to avoid exposing a
      * way to set this value to observers.
@@ -50,6 +53,12 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
     private var _username = MutableLiveData<String>()
     val username: LiveData<String>
         get() = _username
+
+    private var _reposUrl = MutableLiveData<String>()
+    val reposUrl: LiveData<String>
+        get() = _reposUrl
+
+    lateinit var repoUrl:String
 
     private var _gitHubUser = MutableLiveData<GitHubUserModel>()
     lateinit var gitHubUser: LiveData<GitHubUserModel>
@@ -91,6 +100,12 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
         searchResult?.let { gitHubUser = it }
         return searchResult
 
+    }
+
+    // Get user repos
+    private fun fetchUserRepos(username: String): List<UserReposModel>? {
+        val userReposModel: List<UserReposModel>? = null
+        return userReposModel
     }
 
     // Fetch user details remotely

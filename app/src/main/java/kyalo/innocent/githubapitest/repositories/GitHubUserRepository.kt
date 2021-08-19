@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kyalo.innocent.githubapitest.database.github_users.GitHubUsersDatabase
 import kyalo.innocent.githubapitest.models.github_users.AllUsersModel
 import kyalo.innocent.githubapitest.models.github_users.GitHubUserModel
+import kyalo.innocent.githubapitest.models.user_repo_model.UserReposModel
 import kyalo.innocent.githubapitest.network.ApiClient
 import kyalo.innocent.githubapitest.network.GitHubService
 import retrofit2.await
@@ -43,6 +44,17 @@ class GitHubUserRepository(private val gitHubUsersDatabase: GitHubUsersDatabase)
             }
         }
         return userModel
+    }
+
+    // fetch user repos
+    suspend fun getRepos(url: String): List<UserReposModel>? {
+        val gitHubService = ApiClient.apiClient?.create(GitHubService::class.java)
+        val apiCall = gitHubService?.getUserRepositories(url)
+
+        val listOfRepos = apiCall?.await()
+        listOfRepos?.let {  }
+
+        return listOfRepos
     }
 
 
