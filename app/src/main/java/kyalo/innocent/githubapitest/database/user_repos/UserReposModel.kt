@@ -66,6 +66,8 @@ data class UserReposModel constructor(
     val labels_url: String?,
     val language: String?,
     val languages_url: String?,
+
+    // licence entity
     val license: License?,
     val merges_url: String?,
     val milestones_url: String?,
@@ -75,7 +77,9 @@ data class UserReposModel constructor(
     val notifications_url: String?,
     val open_issues: Int?,
     val open_issues_count: Int?,
-    val owner: Owner?,
+
+    // owner entity
+    val owner: Owner,
     val `private`: Boolean?,
     val pulls_url: String?,
     val pushed_at: String?,
