@@ -1,4 +1,4 @@
-package kyalo.innocent.githubapitest.models.user_repo_model
+package kyalo.innocent.githubapitest.database.user_repos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,11 +1,11 @@
-package kyalo.innocent.githubapitest.models.user_repo_model
+package kyalo.innocent.githubapitest.database.user_repos
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "UserReposModel",
+@Entity(tableName = "user_repos_table",
 foreignKeys = [
     ForeignKey(
         entity = License::class,
@@ -18,7 +18,9 @@ foreignKeys = [
         childColumns = ["book_id"],
         onDelete = CASCADE)])
 
-data class UserReposModel(
+//@Entity(tableName = "user_repos_table")
+
+data class UserReposModel constructor(
     val archive_url: String?,
     val archived: Boolean?,
     val assignees_url: String?,
@@ -62,12 +64,12 @@ data class UserReposModel(
     val issues_url: String?,
     val keys_url: String?,
     val labels_url: String?,
-    val language: Any?,
+    val language: String?,
     val languages_url: String?,
     val license: License?,
     val merges_url: String?,
     val milestones_url: String?,
-    val mirror_url: Any?,
+    val mirror_url: String?,
     val name: String?,
     val node_id: String?,
     val notifications_url: String?,

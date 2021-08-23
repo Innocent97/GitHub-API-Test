@@ -14,11 +14,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kyalo.innocent.githubapitest.database.github_users.getGitHubUsersDatabase
-import kyalo.innocent.githubapitest.models.github_users.AllUsersModel
 import kyalo.innocent.githubapitest.models.github_users.GitHubUserModel
-import kyalo.innocent.githubapitest.models.user_repo_model.UserReposModel
+import kyalo.innocent.githubapitest.database.user_repos.UserReposModel
+import kyalo.innocent.githubapitest.database.user_repos.getUserRepoDatabase
 import kyalo.innocent.githubapitest.repositories.GitHubUserRepository
-import java.io.IOException
 
 class GitHubUserViewModel(application: Application): AndroidViewModel(application) {
 
@@ -59,13 +58,15 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
         get() = _reposUrl
 
     lateinit var repoUrl:String
+    var listOfUsersRepos: LiveData<List<UserReposModel>>? = null
 
     private var _gitHubUser = MutableLiveData<GitHubUserModel>()
     lateinit var gitHubUser: LiveData<GitHubUserModel>
 
     // Get DB and Repository
     private val database = getGitHubUsersDatabase(application)
-    private val gitHubUserRepository = GitHubUserRepository(database)
+    private val userRepoDatabase = getUserRepoDatabase(application)
+    private val gitHubUserRepository = GitHubUserRepository(database, userRepoDatabase)
 
     // Set value to the username
     fun setUsername(name: String) {
@@ -73,7 +74,11 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
     }
 
     init {
-        _username.value?.let { fetchGitHubUserInformation(it) }
+        _username.value?.let {
+            fetchGitHubUserInformation(it)
+            //fetchUserRepos()
+        }
+
     }
 
     fun getUserData(string: String) {
@@ -103,9 +108,23 @@ class GitHubUserViewModel(application: Application): AndroidViewModel(applicatio
     }
 
     // Get user repos
-    private fun fetchUserRepos(username: String): List<UserReposModel>? {
-        val userReposModel: List<UserReposModel>? = null
-        return userReposModel
+     fun fetchUserRepos(username: String) {
+        //var userReposModel: List<UserReposModel>? = null
+
+        viewModelScope.launch {
+            gitHubUserRepository.getReposRemotely(username)
+        }
+    }
+
+    // Get all UserRepos from DB
+    fun getAllUserReposFromDB(): LiveData<List<UserReposModel>>? {
+        var returnedList: LiveData<List<UserReposModel>>? = null
+
+        viewModelScope.launch {
+            returnedList = gitHubUserRepository.getUserReposDB()
+        }
+
+        return returnedList
     }
 
     // Fetch user details remotely

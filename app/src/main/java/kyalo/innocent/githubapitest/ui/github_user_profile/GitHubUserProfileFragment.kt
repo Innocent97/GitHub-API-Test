@@ -43,12 +43,20 @@ class GitHubUserProfileFragment: Fragment() {
 
         userProfileViewModel.username.value?.let { userProfileViewModel.getUserData(it) }
 
+        // Get a user's details
         userProfileViewModel.username.value?.let {
             userProfileViewModel.searchUserInDB(it)?.observe(viewLifecycleOwner, { user ->
                 userProfileBinding.gitHubUser = user
                 userProfileViewModel.repoUrl = user.reposUrl.toString()
+                userProfileViewModel.fetchUserRepos(userProfileViewModel.repoUrl)
+
             })
         }
+
+        // Observe the list of User Repos
+        userProfileViewModel.listOfUsersRepos?.observe(viewLifecycleOwner, { reposList ->
+            Toast.makeText(requireContext(), "Number of Repos: ${reposList.size}", Toast.LENGTH_LONG).show()
+        })
 
         userProfileViewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError)
